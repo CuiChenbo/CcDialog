@@ -54,12 +54,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         testBtn6.setOnClickListener {
-         CustomDialog.show(this,R.layout.layout_lufei,object: CustomDialog.OnBindView {
-             override fun onBind(view: View) {
+         CustomDialog.show(this,R.layout.layout_lufei,object: OnBindView {
+             override fun onBind(dialog: BaseDialog?, view: View) {
                  val imageview = view.findViewById<AppCompatImageView>(R.id.iv)
                  val textview = view.findViewById<AppCompatTextView>(R.id.tv)
                  imageview.setOnClickListener{toast("快救我出来") }
-                 textview.setOnClickListener{CustomDialog.dismiss() }
+                 textview.setOnClickListener{dialog!!.dismiss() }
              }
          }, false)
         }

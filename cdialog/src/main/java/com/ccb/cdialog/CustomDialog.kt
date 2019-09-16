@@ -31,7 +31,7 @@ class CustomDialog {
     }
 
     fun bulidView(rootView: View) {
-       if (onBindView != null) onBindView!!.onBind(rootView)
+       if (onBindView != null) onBindView!!.onBind(dialog,rootView)
         refreshView()
     }
 
@@ -75,10 +75,6 @@ class CustomDialog {
 
     fun isNull(s: String?): Boolean {
         return TextUtils.isEmpty(s) || "null" == s
-    }
-
-    interface OnBindView{
-        fun onBind(view : View)
     }
 
     private var onBindView : OnBindView? = null
