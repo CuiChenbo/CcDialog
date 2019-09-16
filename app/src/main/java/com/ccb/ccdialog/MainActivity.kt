@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.ccb.cdialog.*
 import com.ccb.cdialog.`interface`.OnDialogButtonClickListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_lufei.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,9 +44,24 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        testBtn5.setOnClickListener {BottomDialog().bulid(this)
-                .setTitle("挖掘机技术哪家强")
-                .show()
+        testBtn5.setOnClickListener {
+            BottomDialog.show(this,"挖掘机",Arrays.asList("中国","山东","找","蓝翔"),object: OnBottomItemClick {
+                override fun onItemClick(dialog: BaseDialog, position: Int) {
+                    toast(position)
+                    dialog.dismiss()
+                }
+            },false)
+        }
+
+        testBtn6.setOnClickListener {
+         CustomDialog.show(this,R.layout.layout_lufei,object: CustomDialog.OnBindView {
+             override fun onBind(view: View) {
+                 val imageview = view.findViewById<AppCompatImageView>(R.id.iv)
+                 val textview = view.findViewById<AppCompatTextView>(R.id.tv)
+                 imageview.setOnClickListener{toast("快救我出来") }
+                 textview.setOnClickListener{CustomDialog.dismiss() }
+             }
+         }, false)
         }
 
     }

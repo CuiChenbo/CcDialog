@@ -62,7 +62,7 @@ class BottomDialog {
 
     var title : String ? = null
     private fun refreshView() {
-        listMenu!!.adapter = NormalMenuArrayAdapter(context!!, R.layout.item_bottom_menu_ios, Arrays.asList("1","2","3","4"))
+        listMenu!!.adapter = NormalMenuArrayAdapter(context!!, R.layout.item_bottom_menu_ios, items)
         boxList!!.setBackgroundResource(R.drawable.rect_selectdialog_ios_bkg_light)
         boxCancel!!.setBackgroundResource(R.drawable.rect_selectdialog_ios_bkg_light)
         btnCancel!!.text = "取消"
@@ -74,6 +74,8 @@ class BottomDialog {
             titleSplitLine!!.visibility = View.VISIBLE
             txtTitle!!.text = title
         }
+        btnCancel!!.setOnClickListener { dialog!!.dismiss() }
+        listMenu!!.setOnItemClickListener { adapterView, view, i, l -> if(itemClick != null)itemClick!!.onItemClick(dialog!!,i) }
     }
 
 
@@ -119,7 +121,13 @@ class BottomDialog {
 
     fun setTitle(t:String?) : BottomDialog{
         this.title = t
-        return this;
+        return this
+    }
+
+    private var items : List<String> = arrayListOf()
+    fun setItems(items : List<String>) : BottomDialog{
+       this.items = items
+        return this
     }
 
     fun show() {
@@ -134,24 +142,22 @@ class BottomDialog {
 
     companion object {
 
-        fun show(context: AppCompatActivity) {
-            show(context, null, null, false)
+        fun show(context: AppCompatActivity, items: List<String>,itemClick: OnBottomItemClick?) {
+            show(context, "", items, itemClick, false)
         }
 
-        fun show(context: AppCompatActivity, msg: String) {
-            show(context, msg, null, false)
-        }
-
-        var load: BottomDialog? = null
-        fun show(context: AppCompatActivity, msg: String?, back: Int?, cancelable: Boolean) {
-            load = BottomDialog().bulid(context)
-            load!!
+        var bottomDialog: BottomDialog? = null
+        fun show(context: AppCompatActivity, title: String?, items: List<String>,itemClick: OnBottomItemClick? , cancelable: Boolean) {
+            bottomDialog = BottomDialog().bulid(context)
+            bottomDialog!!.setOnBottomItemClickListeners(itemClick)
+            bottomDialog!!.setTitle(title)
+                    .setItems(items!!)
                     .setCancelable(cancelable)
                     .showDialog()
         }
 
         fun dismiss() {
-            if (load != null && load!!.dialog != null) load!!.dialog!!.dismiss()
+            if (bottomDialog != null && bottomDialog!!.dialog != null) bottomDialog!!.dialog!!.dismiss()
         }
     }
 
@@ -161,5 +167,12 @@ class BottomDialog {
 
     private fun isNull(s: String?): Boolean {
         return TextUtils.isEmpty(s) || "null" == s
+    }
+
+    private var itemClick : OnBottomItemClick? = null
+
+    public fun setOnBottomItemClickListeners(itemClick : OnBottomItemClick?):BottomDialog{
+        this.itemClick = itemClick
+        return this
     }
 }
