@@ -16,6 +16,7 @@ class CustomDialog {
         dialog = BaseDialog()
         dialog!!.setLayout(layoutRes)
         dialog!!.setStyle(DialogFragment.STYLE_NORMAL, R.style.BaseDialog)
+        dialog!!.setAnim(R.style.iOSDialogAnimStyle)
         dialog!!.isCancelable = cancelable
         setCentent()
         return this
