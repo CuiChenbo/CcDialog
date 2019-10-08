@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         testBtn5.setOnClickListener {
-            BottomDialog.show(this,"挖掘机",Arrays.asList("中国","山东","找","蓝翔"),object: OnBottomItemClick {
+            BottomDialog.show(this,"挖掘机",Arrays.asList("中国","山东","找","蓝翔","....","试学","一个月","不收取","任何费用"),object: OnBottomItemClick {
                 override fun onItemClick(dialog: BaseDialog, position: Int) {
                     toast(position)
                     dialog.dismiss()

@@ -1,11 +1,14 @@
 package com.ccb.cdialog
 
 import android.content.Context
+import android.os.Build
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.ccb.cdialog.utils.LoadingView
@@ -58,6 +61,17 @@ class BottomDialog {
         boxCancel = rootView.findViewById(R.id.box_cancel)
         btnCancel = rootView.findViewById(R.id.btn_cancel)
         refreshView()
+         //列表的高度不大于设置的最大高度
+        rootView.viewTreeObserver.addOnGlobalLayoutListener(object: ViewTreeObserver.OnGlobalLayoutListener {
+            @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+            override fun onGlobalLayout() {
+                rootView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                val maxH = rootView.height * 5 / 8
+                val cutterH = listMenu!!.height
+                val useH = if (maxH < cutterH) maxH else cutterH
+                listMenu!!.layoutParams.height = useH
+            }
+        })
     }
 
     var title : String ? = null
