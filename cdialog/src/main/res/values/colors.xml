@@ -5,7 +5,7 @@
     <color name="black">#000</color>
     <color name="empty">#00000000</color>
     <color name="waitDialogBackgroundDark">#E0181818</color>
-    <color name="waitDialogBackgroundLight">#E6F4F5F6</color>
+    <color name="waitDialogBackgroundLight">#F3F4F5F6</color>
     <color name="dialogButtonBlueLight">#DCE9F7</color>
     <color name="dialogButtonBlueLightPress">#C7DFF7</color>
     <color name="dialogButtonGrayLight">#f2f2f2</color>
@@ -15,7 +15,7 @@
     <color name="dialogSplitIOSDark">#4e4e50</color>
     <color name="dialogButtonIOSNormal">#007aff</color>
 
-    <color name="dialogBkgIOSLight">#e6F4F5F6</color>
+    <color name="dialogBkgIOSLight">#F3F4F5F6</color>
     <color name="dialogBkgDark">#f0181818</color>
     <color name="dialogButtonBlueDark">#14dfdfdf</color>
     <color name="dialogButtonBlueDarkPress">#1ec0d4f1</color>
