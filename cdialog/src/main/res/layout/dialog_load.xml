@@ -23,6 +23,7 @@
 
             <com.ccb.cdialog.utils.LoadingView
                 android:id="@+id/progress"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="55dp"
                 android:layout_height="55dp" />
 
@@ -32,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:maxLines="3"
-                tools:text="Tip"
+                tools:text="Tip..."
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/white"
                 android:textSize="14dp" />
