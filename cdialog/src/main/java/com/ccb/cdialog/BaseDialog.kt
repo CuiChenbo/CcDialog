@@ -7,9 +7,11 @@ import androidx.fragment.app.DialogFragment
 
  class BaseDialog : DialogFragment(){
 
+     public var basedialog : Dialog? = null
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
        var basedialog = super.onCreateDialog(savedInstanceState)
         setDialogWinsow(basedialog)
+        this.basedialog = basedialog
         return basedialog
     }
 
@@ -55,6 +57,8 @@ import androidx.fragment.app.DialogFragment
                  window.setWindowAnimations(R.style.bottomMenuAnim)
                  window.attributes = lp
              }
+             dialog.setCancelable(true) //点击返回键是否可以撤销
+             dialog.setCanceledOnTouchOutside(false) //Dialog以外的区域是否可以点击
          }
      }
 

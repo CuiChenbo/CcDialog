@@ -11,10 +11,6 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import com.ccb.cdialog.utils.LoadingView
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.concurrent.timerTask
 
 class BottomDialog {
 
@@ -74,7 +70,7 @@ class BottomDialog {
         })
     }
 
-    var title : String ? = null
+    private var title : String ? = null
     private fun refreshView() {
         listMenu!!.adapter = NormalMenuArrayAdapter(context!!, R.layout.item_bottom_menu_ios, items)
         boxList!!.setBackgroundResource(R.drawable.rect_selectdialog_ios_bkg_light)
@@ -88,8 +84,18 @@ class BottomDialog {
             titleSplitLine!!.visibility = View.VISIBLE
             txtTitle!!.text = title
         }
-        btnCancel!!.setOnClickListener { dialog!!.dismiss() }
-        listMenu!!.setOnItemClickListener { adapterView, view, i, l -> if(itemClick != null)itemClick!!.onItemClick(dialog!!,i) }
+        btnCancel!!.setOnClickListener {
+            if (onCancel != null) {
+                onCancel!!.ondis(dialog!!)
+            } else {
+                dialog!!.dismiss()
+            }
+        }
+        listMenu!!.setOnItemClickListener { adapterView, view, i, l ->
+            if(itemClick != null)
+                if (!itemClick!!.onItemClick(dialog!!,i)) else dismiss()
+            else dismiss()
+        }
     }
 
 
@@ -187,6 +193,16 @@ class BottomDialog {
 
     public fun setOnBottomItemClickListeners(itemClick : OnBottomItemClick?):BottomDialog{
         this.itemClick = itemClick
+        return this
+    }
+
+    interface OnCancel{
+        fun ondis(dialog: BaseDialog)
+    }
+    private var onCancel : OnCancel? = null
+
+    public fun setOnCancelListeners(onDismiss : OnCancel?):BottomDialog{
+        this.onCancel = onDismiss
         return this
     }
 }

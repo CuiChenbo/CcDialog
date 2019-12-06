@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.ccb.cdialog.*
-import com.ccb.cdialog.`interface`.OnDialogButtonClickListener
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_lufei.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,19 +18,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        testBtn1.setOnClickListener {AlertDialog.show(this,"通知","APP即将崩溃","MDZZ","我知道了")}
+        testBtn1.setOnClickListener { AlertDialog.show(this,"通知","APP即将崩溃","MDZZ","我知道了")}
         testBtn2.setOnClickListener {AlertDialog().bulid(this).setTitle("崔崔崔")
                 .setMsg("你好")
                 .setBtnR("真帅",object: OnDialogButtonClickListener {
-                    override fun onClick(dialog: BaseDialog, v: View) {
-                       toast("帅")
-                        dialog.dismiss()
+                    override fun onClick(dialog: BaseDialog, v: View): Boolean {
+                        toast("帅")
+                        return true
                     }
                 })
-                .setCancelable(false)
+                .setCancelable(true)
                 .show()}
 
-        testBtn3.setOnClickListener {LoadDialog.show(this)
+        testBtn3.setOnClickListener {
+            LoadDialog.show(this)
         testBtn3.postDelayed(Runnable {LoadDialog.dismiss()  },3000L )
         }
         testBtn4.setOnClickListener {LoadDialog().bulid(this)
@@ -46,9 +45,9 @@ class MainActivity : AppCompatActivity() {
 
         testBtn5.setOnClickListener {
             BottomDialog.show(this,"挖掘机",Arrays.asList("中国","山东","找","蓝翔","....","试学","一个月","不收取","任何费用"),object: OnBottomItemClick {
-                override fun onItemClick(dialog: BaseDialog, position: Int) {
+                override fun onItemClick(dialog: BaseDialog, position: Int): Boolean {
                     toast(position)
-                    dialog.dismiss()
+                    return true
                 }
             },false)
         }

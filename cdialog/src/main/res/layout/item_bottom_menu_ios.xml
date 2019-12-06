@@ -13,6 +13,7 @@
         android:singleLine="true"
         android:text=""
         android:textColor="@color/dialogButtonIOSNormal"
+        android:background="@drawable/button_dialog_ios_right_light"
         android:textSize="19dp" />
 
 </LinearLayout>

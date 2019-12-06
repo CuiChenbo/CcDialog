@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import com.ccb.cdialog.`interface`.OnDialogButtonClickListener
 import com.ccb.cdialog.utils.LoadingView
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -15,9 +14,9 @@ class LoadDialog {
     private var dialog: BaseDialog? = null
     private val TAG = "CCB"
     private var msg: String? = null
-    private var backRes: Int = R.drawable.rect_selectdialog_ios_bkg_dark
-    private var progressColor: Int = R.color.white
-    private var msgColor: Int = R.color.white
+    private var backRes: Int = R.drawable.rect_selectdialog_ios_bkg_light
+    private var progressColor: Int = R.color.dark
+    private var msgColor: Int = R.color.dark
     private var context: AppCompatActivity? = null
 
     fun bulid(context: AppCompatActivity): LoadDialog {
@@ -25,7 +24,6 @@ class LoadDialog {
         dialog = BaseDialog()
         dialog!!.setLayout(R.layout.dialog_load)
         dialog!!.setStyle(DialogFragment.STYLE_NORMAL, R.style.BaseDialog)
-        dialog!!.isCancelable = cancelable
         setCentent()
         return this
     }
@@ -66,9 +64,12 @@ class LoadDialog {
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 
-    private var cancelable: Boolean = false
+    fun dismiss() {
+        dialog!!.dismiss()
+    }
+
     fun setCancelable(enable: Boolean): LoadDialog {
-        cancelable = enable
+        if (dialog != null) dialog!!.isCancelable = enable
         return this
     }
 

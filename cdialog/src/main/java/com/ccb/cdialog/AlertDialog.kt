@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import com.ccb.cdialog.`interface`.OnDialogButtonClickListener
 
 /**
  * 底部按钮优先设置顺序 右 > 左 > 中
@@ -104,18 +103,24 @@ class AlertDialog {
         }
 
         btnSelectNegative!!.setOnClickListener {
-            if (onButtonClick!=null)onButtonClick!!.onClickLift(dialog!!,btnSelectNegative!!)
-            if (onCancelButtonClickListener != null) onCancelButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)
+            if (onButtonClick!=null)
+                if (onButtonClick!!.onClickLift(dialog!!,btnSelectNegative!!)) else dialog!!.dismiss()
+            if (onCancelButtonClickListener != null)
+                if (!onCancelButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)) else dialog!!.dismiss()
             else dialog!!.dismiss()
         }
         btnSelectOther!!.setOnClickListener {
-            if (onButtonClick!=null)onButtonClick!!.onClickCenter(dialog!!,btnSelectOther!!)
-            if (onOtherButtonClickListener != null) onOtherButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)
+            if (onButtonClick!=null)
+                if (onButtonClick!!.onClickCenter(dialog!!,btnSelectOther!!)) else dialog!!.dismiss()
+            if (onOtherButtonClickListener != null)
+                if (!onOtherButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)) else dialog!!.dismiss()
             else dialog!!.dismiss()
         }
         btnSelectPositive!!.setOnClickListener {
-            if (onButtonClick!=null)onButtonClick!!.onClickRight(dialog!!,btnSelectPositive!!)
-            if (onOkButtonClickListener != null) onOkButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)
+            if (onButtonClick!=null)
+                if (onButtonClick!!.onClickRight(dialog!!,btnSelectPositive!!)) else dialog!!.dismiss()
+            if (onOkButtonClickListener != null)
+                if (!onOkButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)) else dialog!!.dismiss()
             else dialog!!.dismiss()
         }
 
