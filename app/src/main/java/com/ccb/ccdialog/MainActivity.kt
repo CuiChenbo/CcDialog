@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
 
         testBtn3.setOnClickListener {
             LoadDialog.show(this)
-        testBtn3.postDelayed(Runnable {LoadDialog.dismiss()  },3000L )
+        testBtn3.postDelayed(Runnable {LoadDialog.dismiss()  },2000L )
         }
         testBtn4.setOnClickListener {LoadDialog().bulid(this)
-                .autoDismiss(3333)
+                .autoDismiss(1333)
                 .setMsg("嘿嘿")
                 .setMsgColor(R.color.dark)
                 .setProgressColor(R.color.dark)
