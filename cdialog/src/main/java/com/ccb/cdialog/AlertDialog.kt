@@ -128,6 +128,9 @@ class AlertDialog {
 
 
     fun show(){
+        if (!dialog!!.isAdded
+                && !dialog!!.isVisible
+                && !dialog!!.isRemoving)
         dialog!!.show(context!!.supportFragmentManager,TAG)
     }
 
@@ -186,6 +189,9 @@ class AlertDialog {
     }
 
    private fun showDialog(){
+       if (!dialog!!.isAdded
+               && !dialog!!.isVisible
+               && !dialog!!.isRemoving)
         dialog!!.show(context!!.supportFragmentManager,TAG)
     }
 

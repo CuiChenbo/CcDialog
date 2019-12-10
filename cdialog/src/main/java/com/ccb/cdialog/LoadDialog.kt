@@ -61,6 +61,9 @@ class LoadDialog {
 
 
     fun show() {
+        if (!dialog!!.isAdded
+                && !dialog!!.isVisible
+                && !dialog!!.isRemoving)
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 
@@ -126,6 +129,9 @@ class LoadDialog {
     }
 
     private fun showDialog() {
+        if (!dialog!!.isAdded
+                && !dialog!!.isVisible
+                && !dialog!!.isRemoving)
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 

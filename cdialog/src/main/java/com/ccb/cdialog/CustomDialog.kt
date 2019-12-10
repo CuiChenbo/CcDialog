@@ -41,6 +41,9 @@ class CustomDialog {
 
 
     fun show() {
+        if (!dialog!!.isAdded
+                && !dialog!!.isVisible
+                && !dialog!!.isRemoving)
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 
@@ -70,6 +73,9 @@ class CustomDialog {
     }
 
     private fun showDialog() {
+        if (!dialog!!.isAdded
+                && !dialog!!.isVisible
+                && !dialog!!.isRemoving)
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 

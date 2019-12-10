@@ -151,6 +151,9 @@ class BottomDialog {
     }
 
     fun show() {
+        if (!dialog!!.isAdded
+                && !dialog!!.isVisible
+                && !dialog!!.isRemoving)
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 
@@ -181,7 +184,10 @@ class BottomDialog {
         }
     }
 
-    private fun showDialog() {
+    private fun showDialog() { if (!dialog!!.isAdded
+            && !dialog!!.isVisible
+            && !dialog!!.isRemoving)
+
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 
