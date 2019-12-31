@@ -14,6 +14,6 @@
         android:text=""
         android:textColor="@color/dialogButtonIOSNormal"
         android:background="@drawable/button_dialog_ios_right_light"
-        android:textSize="18dp" />
+        android:textSize="17dp" />
 
 </LinearLayout>

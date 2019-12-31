@@ -9,7 +9,7 @@
     <color name="dialogSplitIOSLight">#2c000000</color>
     <color name="dialogButtonIOSNormal">#007aff</color>
 
-    <color name="dialogBkgIOSLight">#FEF4F5F6</color>
+    <color name="dialogBkgIOSLight">#F3F4F5F6</color>
     <color name="whiteAlpha50">#80FFFFFF</color>
     <color name="whiteAlpha30">#4DFFFFFF</color>
     <color name="whiteAlpha10">#1AFFFFFF</color>

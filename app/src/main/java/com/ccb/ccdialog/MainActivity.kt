@@ -30,6 +30,26 @@ class MainActivity : AppCompatActivity() {
                 .setCancelable(true)
                 .show()}
 
+        testBtn7.setOnClickListener {
+//            AlertVerticalDialog().bulid(this).setTitle("提示")
+//                .setMsg("选择一个")
+//                .setItems(Arrays.asList("你看","这个碗","有大又圆"))
+//                .setCancelable(true)
+//                .setOnItemClickListeners(object: OnBottomItemClick {
+//                    override fun onItemClick(dialog: BaseDialog, position: Int): Boolean {
+//                        toast(position)
+//                        return true
+//                    }
+//                })
+//                .show()
+            AlertVerticalDialog.show(this,"提示","选择一个",Arrays.asList("你看","这个碗","有大又圆"),object: OnBottomItemClick {
+                override fun onItemClick(dialog: BaseDialog, position: Int): Boolean {
+                    toast(position)
+                    return true
+                }
+            }, false)
+        }
+
         testBtn3.setOnClickListener {
             LoadDialog.show(this)
         testBtn3.postDelayed(Runnable {LoadDialog.dismiss()  },2000L )

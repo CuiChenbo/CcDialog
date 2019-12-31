@@ -26,6 +26,13 @@
             android:layout_marginTop="33dp"
             android:text="普通提示弹框" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/testBtn7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:text="竖直弹框" />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/testBtn3"

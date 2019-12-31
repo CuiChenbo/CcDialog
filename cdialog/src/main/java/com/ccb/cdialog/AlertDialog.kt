@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 
 /**
- * 底部按钮优先设置顺序 右 > 左 > 中
+ * 普通提示弹框
  */
 class AlertDialog {
 
@@ -16,7 +16,6 @@ class AlertDialog {
     private var title : String? = null
     private var msg : String? = null
     private var btnLift : String? = null
-    private var btnCenter : String? = null
     private var btnRight : String? = null
     private var context: AppCompatActivity? = null
 
@@ -46,8 +45,6 @@ class AlertDialog {
      var boxButton: LinearLayout? = null
      var btnSelectNegative: TextView? = null
      var splitVertical1: ImageView? = null
-     var btnSelectOther: TextView? = null
-     var splitVertical2: ImageView? = null
      var btnSelectPositive: TextView? = null
 
     fun bulidView(rootView : View){
@@ -59,8 +56,6 @@ class AlertDialog {
         boxButton = rootView.findViewById(R.id.box_button)
         btnSelectNegative = rootView.findViewById(R.id.btn_selectNegative)
         splitVertical1 = rootView.findViewById(R.id.split_vertical1)
-        btnSelectOther = rootView.findViewById(R.id.btn_selectOther)
-        splitVertical2 = rootView.findViewById(R.id.split_vertical2)
         btnSelectPositive = rootView.findViewById(R.id.btn_selectPositive)
 
         refreshView()
@@ -80,20 +75,10 @@ class AlertDialog {
             txtDialogTip!!.text = msg
         }
         if (isNull(btnLift)){
-            splitVertical2!!.visibility = View.GONE
             btnSelectNegative!!.visibility = View.GONE
         }else{
-            splitVertical2!!.visibility = View.VISIBLE
             btnSelectNegative!!.visibility = View.VISIBLE
             btnSelectNegative!!.text = btnLift
-        }
-        if (isNull(btnCenter)){
-            splitVertical1!!.visibility = View.GONE
-            btnSelectOther!!.visibility = View.GONE
-        }else{
-            splitVertical1!!.visibility = View.VISIBLE
-            btnSelectOther!!.visibility = View.VISIBLE
-            btnSelectOther!!.text = btnCenter
         }
         if (isNull(btnRight)){
             btnSelectPositive!!.visibility = View.GONE
@@ -101,19 +86,17 @@ class AlertDialog {
             btnSelectPositive!!.visibility = View.VISIBLE
             btnSelectPositive!!.text = btnRight
         }
+        if(isNull(btnRight) || isNull(btnLift)){
+            splitVertical1!!.visibility = View.GONE
+        }else{
+            splitVertical1!!.visibility = View.VISIBLE
+        }
 
         btnSelectNegative!!.setOnClickListener {
             if (onButtonClick!=null)
                 if (onButtonClick!!.onClickLift(dialog!!,btnSelectNegative!!)) else dialog!!.dismiss()
             if (onCancelButtonClickListener != null)
                 if (!onCancelButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)) else dialog!!.dismiss()
-            else dialog!!.dismiss()
-        }
-        btnSelectOther!!.setOnClickListener {
-            if (onButtonClick!=null)
-                if (onButtonClick!!.onClickCenter(dialog!!,btnSelectOther!!)) else dialog!!.dismiss()
-            if (onOtherButtonClickListener != null)
-                if (!onOtherButtonClickListener!!.onClick(dialog!!,btnSelectNegative!!)) else dialog!!.dismiss()
             else dialog!!.dismiss()
         }
         btnSelectPositive!!.setOnClickListener {
@@ -152,11 +135,6 @@ class AlertDialog {
         this.onCancelButtonClickListener = onCancelButtonClickListener
         return this
     }
-    fun setBtnC(btnCenter: String?, onOtherButtonClickListener: OnDialogButtonClickListener?) : AlertDialog{
-        this.btnCenter = btnCenter
-        this.onOtherButtonClickListener = onOtherButtonClickListener
-        return this
-    }
     fun setBtnR(btnRight: String?, onOkButtonClickListener: OnDialogButtonClickListener?) : AlertDialog{
         this.btnRight = btnRight
         this.onOkButtonClickListener = onOkButtonClickListener
@@ -168,31 +146,31 @@ class AlertDialog {
     companion object {
 
         fun show(context: AppCompatActivity,title : String , msg : String , btnLift: String){
-            show(context, title, msg,null,null, btnLift)
+            show(context, title, msg,null, btnLift)
         }
 
-        fun show(context: AppCompatActivity, title: String, msg: String, btnLift: String, btnRight: String) {
-            show(context, title, msg, btnLift, null, btnRight)
-        }
-
-        fun show(context: AppCompatActivity, title: String, msg: String, btnLift: String?, btnCenter: String?, btnRight: String?) {
+        fun show(context: AppCompatActivity, title: String, msg: String, btnLift: String?,  btnRight: String?) {
             AlertDialog().bulid(context)
                     .setTitle(title)
                     .setMsg(msg)
                     .setBtnL(btnLift, null)
-                    .setBtnC(btnCenter, null)
                     .setBtnR(btnRight,null)
                     .showDialog()
-
-
         }
     }
 
    private fun showDialog(){
-       if (!dialog!!.isAdded
-               && !dialog!!.isVisible
-               && !dialog!!.isRemoving)
-        dialog!!.show(context!!.supportFragmentManager,TAG)
+        if (!dialog!!.isAdded
+                && !dialog!!.isVisible
+                && !dialog!!.isRemoving)
+            dialog!!.show(context!!.supportFragmentManager,TAG)
+    }
+
+    private fun dismiss(){
+        if (dialog!!.isAdded
+                && dialog!!.isVisible
+                && dialog!!.isRemoving)
+            dialog!!.dismiss()
     }
 
     fun isNull(s : String?) : Boolean{
@@ -201,7 +179,6 @@ class AlertDialog {
 
      var onOkButtonClickListener: OnDialogButtonClickListener? = null
      var onCancelButtonClickListener: OnDialogButtonClickListener? = null
-     var onOtherButtonClickListener: OnDialogButtonClickListener? = null
 
     var onButtonClick : OnButtonClick? = null
     fun setOnButtonClickListener(onButtonClick : OnButtonClick) : AlertDialog{

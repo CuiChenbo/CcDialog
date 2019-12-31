@@ -64,6 +64,7 @@
                     android:divider="@color/dialogSplitIOSLight"
                     android:dividerHeight="1px"
                     android:listSelector="@android:color/transparent"
+                    android:scrollbars="none"
                     android:overScrollMode="never"
                     android:scrollbarSize="7dp"
                     android:scrollbarThumbVertical="@drawable/scrollbar_vertical_track"></ListView>
@@ -84,7 +85,7 @@
             <TextView
                 android:id="@+id/btn_cancel"
                 android:layout_width="match_parent"
-                android:layout_height="53dp"
+                android:layout_height="48dp"
                 android:background="@drawable/button_dialog_ios_right_light"
                 android:gravity="center"
                 android:paddingLeft="15dp"
