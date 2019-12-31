@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         testBtn5.setOnClickListener {
-            BottomDialog.show(this,"挖掘机",Arrays.asList("中国","山东","找","蓝翔","....","试学","一个月","不收取","任何费用"),object: OnBottomItemClick {
+            BottomDialog.show(this,"选择图片",Arrays.asList("拍照","相册","系统图片","查看大图"),object: OnBottomItemClick {
                 override fun onItemClick(dialog: BaseDialog, position: Int): Boolean {
                     toast(position)
                     return true

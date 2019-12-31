@@ -93,7 +93,7 @@
                 android:singleLine="true"
                 android:text="CANCEL"
                 android:textColor="@color/dialogButtonIOSNormal"
-                android:textSize="19dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

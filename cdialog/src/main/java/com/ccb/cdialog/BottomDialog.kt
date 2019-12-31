@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import com.ccb.cdialog.utils.DisplayHelper
 
 class BottomDialog {
 
@@ -65,7 +66,7 @@ class BottomDialog {
                 val maxH = rootView.height * 5 / 8
                 val cutterH = listMenu!!.height
                 val useH = if (maxH < cutterH) maxH else cutterH
-                listMenu!!.layoutParams.height = useH
+                listMenu!!.layoutParams.height = useH + DisplayHelper.dp2px(context,5)
             }
         })
     }
