@@ -166,7 +166,7 @@ class AlertDialog {
             dialog!!.show(context!!.supportFragmentManager,TAG)
     }
 
-    private private fun dismiss(){
+     private fun dismiss(){
         if (dialog!!.isAdded
                 && dialog!!.isVisible
                 && dialog!!.isRemoving)
