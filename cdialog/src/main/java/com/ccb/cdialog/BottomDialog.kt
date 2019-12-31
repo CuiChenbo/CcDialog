@@ -47,7 +47,7 @@ class BottomDialog {
     private var boxCancel: ViewGroup? = null
     private var btnCancel: TextView? = null
 
-    fun bulidView(rootView: View) {
+    private fun bulidView(rootView: View) {
         if (boxCustom != null) boxCustom!!.removeAllViews()
         boxBody = rootView.findViewById(R.id.box_body)
         boxList = rootView.findViewById(R.id.box_list)
@@ -100,7 +100,7 @@ class BottomDialog {
     }
 
 
-    inner class NormalMenuArrayAdapter(context: Context, var resoureId: Int, var objects: List<String>) : ArrayAdapter<Any>(context, resoureId, objects) {
+    private inner class NormalMenuArrayAdapter(context: Context, var resoureId: Int, var objects: List<String>) : ArrayAdapter<Any>(context, resoureId, objects) {
 
         inner class ViewHolder {
             internal var textView: TextView? = null

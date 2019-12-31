@@ -37,17 +37,17 @@ class AlertDialog {
         })
     }
 
-    var txtDialogTitle: TextView? = null
-     var txtDialogTip: TextView? = null
-     var boxCustom: RelativeLayout? = null
-     var txtInput: EditText? = null
-     var splitHorizontal: ImageView? = null
-     var boxButton: LinearLayout? = null
-     var btnSelectNegative: TextView? = null
-     var splitVertical1: ImageView? = null
-     var btnSelectPositive: TextView? = null
+    private var txtDialogTitle: TextView? = null
+    private var txtDialogTip: TextView? = null
+    private var boxCustom: RelativeLayout? = null
+    private var txtInput: EditText? = null
+    private  var splitHorizontal: ImageView? = null
+    private  var boxButton: LinearLayout? = null
+    private  var btnSelectNegative: TextView? = null
+    private var splitVertical1: ImageView? = null
+    private var btnSelectPositive: TextView? = null
 
-    fun bulidView(rootView : View){
+    private fun bulidView(rootView : View){
         txtDialogTitle = rootView.findViewById(R.id.txt_dialog_title)
         txtDialogTip = rootView.findViewById(R.id.txt_dialog_tip)
         boxCustom = rootView.findViewById(R.id.box_custom)
@@ -166,14 +166,14 @@ class AlertDialog {
             dialog!!.show(context!!.supportFragmentManager,TAG)
     }
 
-    private fun dismiss(){
+    private private fun dismiss(){
         if (dialog!!.isAdded
                 && dialog!!.isVisible
                 && dialog!!.isRemoving)
             dialog!!.dismiss()
     }
 
-    fun isNull(s : String?) : Boolean{
+    private fun isNull(s : String?) : Boolean{
       return TextUtils.isEmpty(s) || "null".equals(s)
     }
 

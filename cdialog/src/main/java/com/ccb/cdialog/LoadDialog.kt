@@ -40,7 +40,7 @@ class LoadDialog {
     private var layoutBck: RelativeLayout? = null
     private var progress: LoadingView? = null
 
-    fun bulidView(rootView: View) {
+    private fun bulidView(rootView: View) {
         tvInfo = rootView.findViewById(R.id.txt_info)
         layoutBck = rootView.findViewById(R.id.box_body)
         progress = rootView.findViewById(R.id.progress)
@@ -135,7 +135,7 @@ class LoadDialog {
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 
-    fun isNull(s: String?): Boolean {
+    private fun isNull(s: String?): Boolean {
         return TextUtils.isEmpty(s) || "null" == s
     }
 }

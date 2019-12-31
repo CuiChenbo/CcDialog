@@ -42,14 +42,14 @@ class AlertVerticalDialog {
         })
     }
 
-    var txtDialogTitle: TextView? = null
-     var txtDialogTip: TextView? = null
-     var boxCustom: RelativeLayout? = null
-     var txtInput: EditText? = null
-     var splitHorizontal: ImageView? = null
+    private var txtDialogTitle: TextView? = null
+    private  var txtDialogTip: TextView? = null
+    private var boxCustom: RelativeLayout? = null
+    private var txtInput: EditText? = null
+    private var splitHorizontal: ImageView? = null
     private var listMenu: ListView? = null
 
-    fun bulidView(rootView : View){
+    private fun bulidView(rootView : View){
         txtDialogTitle = rootView.findViewById(R.id.txt_dialog_title)
         txtDialogTip = rootView.findViewById(R.id.txt_dialog_tip)
         boxCustom = rootView.findViewById(R.id.box_custom)
@@ -99,7 +99,7 @@ class AlertVerticalDialog {
     }
 
 
-    inner class NormalMenuArrayAdapter(context: Context, var resoureId: Int, var objects: List<String>) : ArrayAdapter<Any>(context, resoureId, objects) {
+    private inner class NormalMenuArrayAdapter(context: Context, var resoureId: Int, var objects: List<String>) : ArrayAdapter<Any>(context, resoureId, objects) {
 
         inner class ViewHolder {
             internal var textView: TextView? = null
@@ -196,7 +196,7 @@ class AlertVerticalDialog {
                 && dialog!!.isRemoving)
             dialog!!.dismiss()
     }
-    fun isNull(s : String?) : Boolean{
+    private fun isNull(s : String?) : Boolean{
       return TextUtils.isEmpty(s) || "null".equals(s)
     }
 

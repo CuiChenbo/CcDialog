@@ -30,7 +30,7 @@ class CustomDialog {
         })
     }
 
-    fun bulidView(rootView: View) {
+    private fun bulidView(rootView: View) {
        if (onBindView != null) onBindView!!.onBind(dialog,rootView)
         refreshView()
     }
@@ -79,7 +79,7 @@ class CustomDialog {
         dialog!!.show(context!!.supportFragmentManager, TAG)
     }
 
-    fun isNull(s: String?): Boolean {
+    private fun isNull(s: String?): Boolean {
         return TextUtils.isEmpty(s) || "null" == s
     }
 
